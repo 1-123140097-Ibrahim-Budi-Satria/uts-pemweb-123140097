@@ -1,0 +1,168 @@
+/* Header Styles */
+.header {
+  background: linear-gradient(135deg, var(--secondary-color) 0%, #282828 100%);
+  padding: 30px 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 3px solid var(--primary-color);
+}
+
+.header-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+/* Logo Styles */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.logo:hover {
+  transform: scale(1.05);
+}
+
+.logo-icon {
+  font-size: 40px;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+.logo-text {
+  font-size: 32px;
+  font-weight: 700;
+  background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Navigation Styles - Multiple CSS Selectors */
+.nav {
+  display: flex;
+}
+
+.nav-list {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+}
+
+.nav-item {
+  position: relative;
+}
+
+/* Combination Selector: descendant selector */
+.nav-item .nav-link {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 16px;
+  padding: 8px 16px;
+  border-radius: var(--border-radius);
+  transition: var(--transition);
+  display: block;
+}
+
+/* Pseudo-class selectors */
+.nav-link:hover {
+  color: var(--text-color);
+  background-color: var(--hover-color);
+}
+
+.nav-link:active {
+  transform: scale(0.95);
+}
+
+.nav-link:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* Pseudo-element selector */
+.nav-item::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background-color: var(--primary-color);
+  transition: width 0.3s ease;
+}
+
+.nav-item:hover::after {
+  width: 80%;
+}
+
+/* Header Subtitle */
+.header-subtitle {
+  color: var(--text-secondary);
+  font-size: 14px;
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* Responsive Design - Media Queries */
+@media (max-width: 768px) {
+  .header {
+    padding: 20px 15px;
+  }
+  
+  .header-content {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .logo-text {
+    font-size: 26px;
+  }
+  
+  .logo-icon {
+    font-size: 32px;
+  }
+  
+  .nav-list {
+    gap: 10px;
+  }
+  
+  .nav-link {
+    font-size: 14px;
+    padding: 6px 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: 15px 10px;
+  }
+  
+  .logo-text {
+    font-size: 22px;
+  }
+  
+  .logo-icon {
+    font-size: 28px;
+  }
+  
+  .header-subtitle {
+    font-size: 12px;
+  }
+}

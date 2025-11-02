@@ -1,0 +1,74 @@
+# expert_simple.py
+# Versi sederhana: Forward & Backward Chaining + prioritas
+
+RULES = [
+    # rid,      conditions,                                   conclusion,                     priority (angka makin besar makin tinggi)
+    ("R1", ["mesin_mati_total"],                               "cek_kelistrikan",              1),
+    ("R2", ["mesin_berputar_lambat"],                          "aki_lemah",                    2),
+    ("R3", ["lampu_redup"],                                     "aki_lemah",                    2),
+    ("R4", ["aki_lemah", "tidak_ada_karat_terminal"],           "ganti_aki",                    3),
+    ("R5", ["suara_klik_saat_start"],                           "aki_lemah",                    2),
+    ("R6", ["mesin_mati_total", "tidak_ada_suara"],             "fungsi_kelistrikan_terputus",  3),
+    ("R7", ["aki_lemah"],                                       "mesin_sulit_start",            1),
+    ("R8", ["cek_kelistrikan", "terdapat_konsleting"],          "isolasi_kelistrikan",          4),
+]
+
+def sort_rules(rs):
+    # prioritas > jumlah kondisi > id (R1<R2<…)
+    return sorted(rs, key=lambda r: (r[3], len(r[1]), -int(r[0][1:])), reverse=True)
+
+def forward(facts):
+    facts = set(facts)
+    trace = []
+    while True:
+        agenda = []
+        for rid, conds, concl, pr in RULES:
+            if concl not in facts and all(c in facts for c in conds):
+                agenda.append((rid, conds, concl, pr))
+        if not agenda:
+            break
+        rid, conds, concl, pr = sort_rules(agenda)[0]
+        facts.add(concl)
+        trace.append(f"{rid}: {conds} -> {concl}")
+    return facts, trace
+
+def backward(goal, facts, visited=None):
+    if goal in facts: 
+        return True, [f"goal '{goal}' sudah fakta"]
+    if visited is None: visited = set()
+    if goal in visited: return False, [f"loop pada '{goal}'"]
+    visited.add(goal)
+
+    producers = sort_rules([r for r in RULES if r[2] == goal])
+    for rid, conds, concl, pr in producers:
+        all_ok, tr = True, []
+        for c in conds:
+            ok, t = backward(c, facts, visited)
+            tr += t
+            if not ok:
+                all_ok = False; break
+        if all_ok:
+            facts.add(goal)
+            tr.append(f"{rid}: {conds} -> {goal}")
+            return True, tr
+    return False, [f"tidak ada rule untuk '{goal}'"]
+
+if __name__ == "__main__":
+    # Fakta awal dari soal (bisa ubah sendiri)
+    fakta_awal = {
+        "mesin_mati_total",
+        "suara_klik_saat_start",
+        "tidak_ada_karat_terminal",
+    }
+    print("Fakta awal:", fakta_awal)
+
+    # Forward
+    facts_end, tr = forward(fakta_awal)
+    print("\n[FORWARD] trace:")
+    for s in tr: print(" -", s)
+    print("Fakta akhir:", facts_end)
+
+    # Backward (cek perlu ganti aki?)
+    ok, trb = backward("ganti_aki", set(fakta_awal))
+    print("\n[BACKWARD] goal='ganti_aki' ->", ok)
+    for s in trb: print(" -", s)

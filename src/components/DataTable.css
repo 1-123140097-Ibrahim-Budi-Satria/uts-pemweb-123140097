@@ -1,0 +1,364 @@
+/* DataTable Styles */
+.data-table-container {
+  background-color: var(--card-background);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.table-wrapper {
+  overflow-x: auto;
+  width: 100%;
+}
+
+/* Table Base Styles - Element Selector */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--card-background);
+}
+
+/* Table Header - Descendant Selector */
+.data-table thead {
+  background-color: var(--secondary-color);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.data-table thead tr {
+  border-bottom: 2px solid var(--primary-color);
+}
+
+.data-table th {
+  padding: 16px 12px;
+  text-align: left;
+  font-weight: 600;
+  color: var(--text-color);
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Column Specific Widths - Class Selectors */
+.th-artwork {
+  width: 80px;
+}
+
+.th-track {
+  min-width: 200px;
+}
+
+.th-artist {
+  min-width: 150px;
+}
+
+.th-album {
+  min-width: 150px;
+}
+
+.th-price {
+  width: 100px;
+}
+
+.th-release {
+  width: 130px;
+}
+
+.th-preview {
+  width: 80px;
+  text-align: center;
+}
+
+.th-action {
+  width: 100px;
+  text-align: center;
+}
+
+/* Table Body Styles */
+.data-table tbody tr {
+  border-bottom: 1px solid var(--hover-color);
+  transition: var(--transition);
+}
+
+/* Pseudo-class: hover effect on rows */
+.data-table tbody tr:hover {
+  background-color: var(--hover-color);
+}
+
+/* Pseudo-class: nth-child for alternating rows */
+.data-table tbody tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+.data-table tbody tr:nth-child(even):hover {
+  background-color: var(--hover-color);
+}
+
+.data-table td {
+  padding: 16px 12px;
+  color: var(--text-secondary);
+  font-size: 14px;
+  vertical-align: middle;
+}
+
+/* Artwork Styles */
+.artwork-img {
+  width: 60px;
+  height: 60px;
+  border-radius: 6px;
+  object-fit: cover;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  transition: var(--transition);
+}
+
+/* Pseudo-class: hover on artwork */
+.artwork-img:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+/* Track Name Styles */
+.track-name {
+  color: var(--text-color);
+  font-weight: 600;
+}
+
+/* Price Badge */
+.price-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 12px;
+}
+
+/* Preview Button - Combination of class selectors */
+.preview-btn {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  border: none;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+  font-size: 16px;
+}
+
+.preview-btn:hover {
+  background-color: var(--accent-color);
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(29, 185, 84, 0.4);
+}
+
+.preview-btn:active {
+  transform: scale(0.95);
+}
+
+.preview-btn.playing {
+  background-color: var(--error-color);
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(226, 33, 52, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(226, 33, 52, 0);
+  }
+}
+
+.preview-btn:disabled {
+  background-color: var(--hover-color);
+  color: var(--text-secondary);
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.preview-btn:disabled:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+.icon-play,
+.icon-pause {
+  display: block;
+}
+
+/* Add to Playlist Button */
+.add-btn {
+  background-color: transparent;
+  color: var(--primary-color);
+  border: 2px solid var(--primary-color);
+  padding: 8px 16px;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: var(--transition);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.add-btn:hover {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(29, 185, 84, 0.3);
+}
+
+.add-btn:active {
+  transform: translateY(0);
+}
+
+.add-icon {
+  font-size: 16px;
+}
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--text-secondary);
+}
+
+.empty-icon {
+  font-size: 64px;
+  display: block;
+  margin-bottom: 16px;
+  opacity: 0.5;
+}
+
+.empty-state p {
+  font-size: 18px;
+}
+
+/* Responsive Design - Mobile View */
+@media (max-width: 1024px) {
+  .data-table th,
+  .data-table td {
+    padding: 12px 8px;
+    font-size: 13px;
+  }
+  
+  .artwork-img {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Transform table to card layout on mobile */
+  .data-table thead {
+    display: none;
+  }
+  
+  .data-table,
+  .data-table tbody,
+  .data-table tr,
+  .data-table td {
+    display: block;
+    width: 100%;
+  }
+  
+  .data-table tr {
+    margin-bottom: 20px;
+    border: 1px solid var(--hover-color);
+    border-radius: var(--border-radius);
+    padding: 15px;
+  }
+  
+  .data-table td {
+    padding: 10px 0;
+    text-align: left;
+    border: none;
+    position: relative;
+    padding-left: 45%;
+  }
+  
+  /* Pseudo-element: add labels on mobile */
+  .data-table td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 0;
+    width: 40%;
+    font-weight: 600;
+    color: var(--text-color);
+    text-transform: uppercase;
+    font-size: 11px;
+  }
+  
+  .td-artwork {
+    padding-left: 0;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  .td-artwork::before {
+    display: none;
+  }
+  
+  .artwork-img {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .td-preview,
+  .td-action {
+    text-align: left;
+  }
+  
+  .add-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .data-table td {
+    font-size: 12px;
+  }
+  
+  .preview-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 14px;
+  }
+  
+  .add-btn {
+    padding: 10px;
+    font-size: 12px;
+  }
+  
+  .price-badge {
+    font-size: 11px;
+    padding: 3px 8px;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .preview-btn,
+  .add-btn {
+    display: none;
+  }
+  
+  .data-table {
+    border: 1px solid #000;
+  }
+  
+  .data-table th,
+  .data-table td {
+    color: #000;
+    border: 1px solid #000;
+  }
+}

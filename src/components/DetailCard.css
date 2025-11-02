@@ -1,0 +1,420 @@
+/* DetailCard Container */
+.detail-card-container {
+  width: 100%;
+}
+
+/* Playlist Summary - Flexbox */
+.playlist-summary {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+  padding: 20px;
+  border-radius: var(--border-radius);
+  margin-bottom: 30px;
+  box-shadow: 0 4px 12px rgba(29, 185, 84, 0.3);
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.summary-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.summary-label {
+  font-size: 14px;
+  color: var(--secondary-color);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.summary-value {
+  font-size: 28px;
+  color: var(--secondary-color);
+  font-weight: 700;
+}
+
+.summary-value.price {
+  font-size: 32px;
+}
+
+/* Cards Grid - CSS Grid Layout */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 25px;
+  margin-bottom: 20px;
+}
+
+/* Individual Card - Class Selector */
+.detail-card {
+  background-color: var(--card-background);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* Pseudo-class: hover effect */
+.detail-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 24px rgba(29, 185, 84, 0.3);
+}
+
+/* Card Header with Artwork */
+.card-header {
+  position: relative;
+  width: 100%;
+  padding-top: 100%; /* 1:1 Aspect Ratio */
+  overflow: hidden;
+  background-color: var(--hover-color);
+}
+
+.card-artwork {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: var(--transition);
+}
+
+/* Pseudo-class: hover effect on artwork */
+.card-header:hover .card-artwork {
+  transform: scale(1.1);
+}
+
+/* Play Overlay */
+.play-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  transition: var(--transition);
+}
+
+/* Pseudo-class: show overlay on hover */
+.card-header:hover .play-overlay {
+  opacity: 1;
+}
+
+.play-overlay-btn {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  border: none;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  font-size: 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.play-overlay-btn:hover {
+  background-color: var(--accent-color);
+  transform: scale(1.15);
+}
+
+.play-overlay-btn:active {
+  transform: scale(0.95);
+}
+
+.play-overlay-btn.playing {
+  background-color: var(--error-color);
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.play-overlay-btn:disabled {
+  background-color: var(--hover-color);
+  color: var(--text-secondary);
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* Card Body */
+.card-body {
+  padding: 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.card-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-color);
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  line-height: 1.4;
+}
+
+.card-artist {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Card Details */
+.card-details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.detail-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.detail-icon {
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.detail-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Card Footer */
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 15px;
+  border-top: 1px solid var(--hover-color);
+  margin-top: auto;
+}
+
+.card-price {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+/* Remove Button */
+.remove-btn {
+  background-color: transparent;
+  color: var(--error-color);
+  border: 2px solid var(--error-color);
+  padding: 8px 16px;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+/* Pseudo-class: hover on remove button */
+.remove-btn:hover {
+  background-color: var(--error-color);
+  color: var(--text-color);
+  transform: scale(1.05);
+}
+
+.remove-btn:active {
+  transform: scale(0.95);
+}
+
+.remove-icon {
+  font-size: 14px;
+}
+
+/* Empty Playlist State */
+.empty-playlist {
+  text-align: center;
+  padding: 80px 20px;
+  background-color: var(--card-background);
+  border-radius: var(--border-radius);
+  border: 2px dashed var(--hover-color);
+}
+
+.empty-playlist-icon {
+  font-size: 80px;
+  display: block;
+  margin-bottom: 20px;
+  opacity: 0.3;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.empty-playlist-text {
+  font-size: 24px;
+  color: var(--text-color);
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.empty-playlist-hint {
+  font-size: 16px;
+  color: var(--text-secondary);
+}
+
+/* Responsive Design - Media Queries */
+@media (max-width: 1200px) {
+  .cards-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .cards-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+  }
+  
+  .card-body {
+    padding: 15px;
+  }
+  
+  .card-title {
+    font-size: 16px;
+  }
+  
+  .card-artist {
+    font-size: 13px;
+  }
+  
+  .card-price {
+    font-size: 18px;
+  }
+  
+  .play-overlay-btn {
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+  }
+  
+  .playlist-summary {
+    padding: 15px;
+  }
+  
+  .summary-value {
+    font-size: 24px;
+  }
+  
+  .summary-value.price {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cards-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
+  .card-body {
+    padding: 12px;
+  }
+  
+  .card-title {
+    font-size: 15px;
+  }
+  
+  .detail-row {
+    font-size: 12px;
+  }
+  
+  .remove-btn {
+    padding: 6px 12px;
+    font-size: 11px;
+  }
+  
+  .empty-playlist {
+    padding: 60px 15px;
+  }
+  
+  .empty-playlist-icon {
+    font-size: 60px;
+  }
+  
+  .empty-playlist-text {
+    font-size: 20px;
+  }
+  
+  .empty-playlist-hint {
+    font-size: 14px;
+  }
+}
+
+/* Pseudo-class: focus states for accessibility */
+.play-overlay-btn:focus,
+.remove-btn:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .detail-card {
+    border: 2px solid var(--text-color);
+  }
+  
+  .remove-btn {
+    border-width: 3px;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .detail-card,
+  .card-artwork,
+  .play-overlay,
+  .play-overlay-btn,
+  .remove-btn {
+    transition: none;
+  }
+  
+  .empty-playlist-icon {
+    animation: none;
+  }
+  
+  .play-overlay-btn.playing {
+    animation: none;
+  }
+}
