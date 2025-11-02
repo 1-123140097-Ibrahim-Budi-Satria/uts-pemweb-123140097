@@ -1,7 +1,7 @@
 # Music Explorer 🎵
 
 **Nama**: Ibrahim Budi Satria  
-**NIM**: 123140097
+**NIM**: 123140097  
 **Mata Kuliah**: Pengembangan Aplikasi Web RA
 
 ## 📋 Deskripsi Project
