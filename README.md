@@ -1,7 +1,7 @@
 # Music Explorer 🎵
 
 **Nama**: Ibrahim Budi Satria  
-**NIM**: 123140097
+**NIM**: 123140097  
 **Mata Kuliah**: Pengembangan Aplikasi Web RA
 
 ## 📋 Deskripsi Project
@@ -11,6 +11,17 @@ Music Explorer adalah aplikasi React untuk mencari dan menjelajahi musik, album,
 - Mendengarkan preview audio dari track
 - Membuat dan mengelola playlist pribadi
 - Menyimpan playlist secara lokal (localStorage)
+
+## 📸 Screenshot Aplikasi
+
+### Halaman Home
+![Home Page](img/Home.png)
+
+### Halaman Search
+![Search Page](img/Search.png)
+
+### Halaman Library/Playlist
+![Library Page](img/Library.png)
 
 ## ✨ Fitur Utama
 
