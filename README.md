@@ -1,4 +1,4 @@
-# Music Explorer 🎵
+# My Musik 🎵
 
 **Nama**: Ibrahim Budi Satria  
 **NIM**: 123140097  
@@ -56,5 +56,7 @@ Music Explorer adalah aplikasi React untuk mencari dan menjelajahi musik, album,
    http://localhost:3000
    ```
 
+## Link Deployment
+https://uts-pemweb-123140097.vercel.app/
 ---
 
